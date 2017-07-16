@@ -1,0 +1,15 @@
+version: "2.2"
+services:
+  timemachine:
+    image: vi7al/netatalk-timemachine:latest
+    volumes:
+      - ${TIMEMACHINE_VOLUME:-/mnt/timemachine}:/timemachine
+    restart: unless-stopped
+    hostname: timemachine
+    ports:
+      - "548:548"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "5"
