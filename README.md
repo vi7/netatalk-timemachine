@@ -25,7 +25,7 @@ docker-compose -f netatalk-compose.yml up -d
 
 - open **afpd** config file in editor:
   ```sh
-  docker exec -it pinkpony_timemachine_1 vi /etc/afp.conf
+  docker exec -it <container_name> vi /etc/afp.conf
   ```
 
 - add configuration section for the share at the end of the file. Example is below
@@ -37,9 +37,8 @@ docker-compose -f netatalk-compose.yml up -d
   # the max size of the data folder (in Kb)
   vol size limit = 536870912
   ```
-  **NOTE:**  do not forget to provide docker volume for `/another_timemachine` container dir in advance through `docker run` or by upgrading the service via `docker-compose up`
 
 - force AFPd to re-read the config
   ```sh
-  docker exec -it pinkpony_timemachine_1 pkill -HUP afpd
+  docker exec -it <container_name> pkill -HUP afpd
   ```
