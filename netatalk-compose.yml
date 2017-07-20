@@ -5,6 +5,7 @@ services:
     volumes:
       - ${TIMEMACHINE_VOLUME:-/mnt/timemachine}:/timemachine
     restart: unless-stopped
+    network_mode: host
     hostname: timemachine
     ports:
       - "548:548"

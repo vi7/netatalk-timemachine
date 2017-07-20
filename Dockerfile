@@ -22,6 +22,7 @@ RUN chmod u+x /provision.sh && \
     rm -f /provision.sh
 
 VOLUME ${AFP_VOL_PATH}
+VOLUME /etc
 
 EXPOSE 548
 
