@@ -41,6 +41,7 @@ apk add netatalk=$NETATALK_VERSION
 rm -f /var/cache/apk/APKINDEX.*
 
 # Netatalk configuration
+# TODO: move to separate afp.conf
 cat << EOF > /etc/afp.conf
 [Global]
 mimic model = AirPort
@@ -48,6 +49,8 @@ mimic model = AirPort
 log file = /dev/stdout
 log level = default:info
 zeroconf = no
+# TODO: monitor transfer speed changes
+dsireadbuf = 24
 
 [Time Machine]
 path = $AFP_VOL_PATH
