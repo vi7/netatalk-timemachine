@@ -1,6 +1,10 @@
 # netatalk-timemachine
 
-Version: **0.2-3.1.10-r1**
+Version: **0.3**
+
+Based on:
+- [Alpine Linux](https://hub.docker.com/r/library/alpine/): **edge**
+- [Netatalk](https://pkgs.alpinelinux.org/packages?name=netatalk): **3.1.11-r0**
 
 ## Build, tag and push
 

@@ -14,17 +14,14 @@ set -e
 ########
 # VARS #
 ########
-ALP_TESTREPO_URL="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
-
-: ${NETATALK_VERSION:=3.1.10-r1}
 
 # TODO: check if FIFO required for logfile replacement
 : ${AFP_LOG_FIFO:="/var/log/afpd_log"}
 AFP_VOL_USERNAME="tmbackup"
 AFP_VOL_PASSWORD="tmbackup"
 : ${AFP_VOL_PATH:="/timemachine"}
-# AFP vol size for the Time Machine backups. Default: 512GB
-: ${AFP_VOL_SIZE_LIMIT:=536870912}
+# AFP vol size for the Time Machine backups. Default: 250GB
+: ${AFP_VOL_SIZE_LIMIT:=262144000}
 
 ########
 # MAIN #
