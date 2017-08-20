@@ -15,8 +15,6 @@ set -e
 # VARS #
 ########
 
-# TODO: check if FIFO required for logfile replacement
-: ${AFP_LOG_FIFO:="/var/log/afpd_log"}
 AFP_VOL_USERNAME="tmbackup"
 AFP_VOL_PASSWORD="tmbackup"
 : ${AFP_VOL_PATH:="/timemachine"}
@@ -66,5 +64,3 @@ echo $AFP_VOL_USERNAME:$AFP_VOL_PASSWORD | chpasswd
 mkdir -p $AFP_VOL_PATH
 chown -R $AFP_VOL_USERNAME:$AFP_VOL_USERNAME $AFP_VOL_PATH
 
-# Create FIFO for logs redirection
-mkfifo $AFP_LOG_FIFO
