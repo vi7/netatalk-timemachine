@@ -4,6 +4,7 @@ services:
     image: vi7al/netatalk-timemachine:latest
     volumes:
       - ${TIMEMACHINE_VOLUME:-/mnt/timemachine}:/timemachine
+      - tm-cnid-data:/var/netatalk
     restart: unless-stopped
     mem_limit: 70m
     network_mode: host
@@ -15,3 +16,5 @@ services:
       options:
         max-size: "1m"
         max-file: "5"
+volumes:
+  tm-cnid-data:

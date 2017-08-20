@@ -6,11 +6,6 @@
 
 set -e
 
-########
-# VARS #
-########
-: ${AFP_LOG_FIFO:="/var/log/afpd_log"}
-
 # Netatalk start
 echo "Starting Netatalk daemon..."
 exec /usr/sbin/netatalk -d
