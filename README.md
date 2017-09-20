@@ -2,7 +2,7 @@
 
 **Alpine Linux based Netatalk AFP fileserver for the Apple Time Machine backups and more**
 
-Version: **0.3**
+Version: **0.4**
 
 Based on:
 - [Alpine Linux](https://hub.docker.com/r/library/alpine/): **edge**
