@@ -6,6 +6,9 @@
 
 set -e
 
+# Cleaning staled lock file if container exited incorrectly
+rm -f /var/lock/netatalk
+
 # Netatalk start
 echo "Starting Netatalk daemon..."
 exec /usr/sbin/netatalk -d
