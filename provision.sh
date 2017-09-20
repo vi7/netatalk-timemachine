@@ -24,11 +24,6 @@ AFP_VOL_PASSWORD="tmbackup"
 ########
 # MAIN #
 ########
-if ! grep -q "$ALP_TESTREPO_URL" /etc/apk/repositories
-then
-  echo "[INFO] configuring 'testing' repo for Alpine"
-  echo -e "\n$ALP_TESTREPO_URL\n" >> /etc/apk/repositories
-fi
 
 # Install Netatalk and cleanup apk cache
 apk update
