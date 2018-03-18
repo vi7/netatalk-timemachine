@@ -6,11 +6,13 @@ LABEL maintainer="Vitaliy D. <vi7alya@gmail.com>"
 LABEL description="Netatalk AFP fileserver for the Apple TimeMachine backups"
 
 # Build args
-ARG AFP_VOL_PATH=/timemachine
+ARG TIMEMACHINE_USER="tmbackup"
+ARG TIMEMACHINE_VOL_PATH="/timemachine"
 
 # Env vars
 ENV NETATALK_VERSION=3.1.12-r0 \
-    AFP_VOL_PATH=${AFP_VOL_PATH}
+    TIMEMACHINE_USER=${TIMEMACHINE_USER} \
+    TIMEMACHINE_VOL_PATH=${TIMEMACHINE_VOL_PATH}
 
 WORKDIR /
 
@@ -20,7 +22,7 @@ RUN chmod u+x /provision.sh && \
     ./provision.sh && \
     rm -f /provision.sh
 
-VOLUME ${AFP_VOL_PATH}
+VOLUME ${TIMEMACHINE_VOL_PATH}
 # Preserve manual changes in /etc/afp.conf
 VOLUME /etc
 # Preserve Netatalk CNID DB data

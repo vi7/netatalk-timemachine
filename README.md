@@ -12,12 +12,16 @@ Based on:
 
 Running the service via Docker compose:
 ```sh
-# Overrride mountpoint for timemachine data volume if needed. Default: `/mnt/timemachine`
-# export TIMEMACHINE_VOLUME=/some/path
-# Override container name prefix
-# export COMPOSE_PROJECT_NAME=myapp
 docker-compose -f netatalk-compose.yml up -d
 ```
+
+The following env vars can be set to alter the container behaviour before running 'docker-compose':
+
+`export COMPOSE_PROJECT_NAME=myawesomeserver` - override container name prefix. Default: current dir name
+
+`export TIMEMACHINE_VOLUME=/some/path` - overrride host mountpoint for Time Machine volume. Defaults to: '/mnt/timemachine'
+
+`export TIMEMACHINE_PASSWORD=p4ssw0rd` - override Time Machine user password. Default is equals to username: 'tmbackup', unless changed at container build time
 
 >If you're not using Docker Compose, there is run example directly via Docker at [`tm_runner.sh`](./tm_runner.sh).
 >
@@ -28,7 +32,7 @@ docker-compose -f netatalk-compose.yml up -d
 ### Mac OS Time Machine disk
 
 - Go to **Finder**, press **CMD+K**, insert `afp://<your-server-address>/`
-- Provide credentials, defaults are:
+- Provide credentials, defaults are (check above on how to change the default password):
   - username: `tmbackup`
   - password: `tmbackup`
 - Go to **Time Machine Preferences** pane, press **Select Disk**, choose the network drive connected in the previous step, enter credentials again if asked
@@ -59,6 +63,8 @@ docker push vi7al/netatalk-timemachine
 ## Configure
 
 ### Add share
+
+- create dir and make it available to the container. Dir should be RW for the afpd user (tmbackup) from the host and container sides
 
 - open **afpd** config file in editor:
   ```sh

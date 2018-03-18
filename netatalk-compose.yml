@@ -6,7 +6,7 @@ services:
       - ${TIMEMACHINE_VOLUME:-/mnt/timemachine}:/timemachine
       - tm-cnid-data:/var/netatalk
     restart: unless-stopped
-    mem_limit: 512m
+    mem_limit: 768m
     network_mode: host
     hostname: timemachine
     ports:

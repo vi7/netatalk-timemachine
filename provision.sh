@@ -15,11 +15,11 @@ set -e
 # VARS #
 ########
 
-AFP_VOL_USERNAME="tmbackup"
-AFP_VOL_PASSWORD="tmbackup"
-: ${AFP_VOL_PATH:="/timemachine"}
+: ${TIMEMACHINE_USER:="tmbackup"}
+: ${TIMEMACHINE_PASSWORD:="$TIMEMACHINE_USER"}
+: ${TIMEMACHINE_VOL_PATH:="/timemachine"}
 # AFP vol size for the Time Machine backups. Default: 250GB
-: ${AFP_VOL_SIZE_LIMIT:=262144000}
+: ${TIMEMACHINE_VOL_SIZE_LIMIT:=262144000}
 
 ########
 # MAIN #
@@ -42,19 +42,19 @@ zeroconf = no
 dsireadbuf = 24
 
 [Time Machine]
-path = $AFP_VOL_PATH
-valid users = $AFP_VOL_USERNAME
+path = $TIMEMACHINE_VOL_PATH
+valid users = $TIMEMACHINE_USER
 time machine = yes
 # the max size of the data folder (in Kb)
-vol size limit = $AFP_VOL_SIZE_LIMIT
+vol size limit = $TIMEMACHINE_VOL_SIZE_LIMIT
 EOF
 
 # Add user
-addgroup -g 1102 $AFP_VOL_USERNAME
-adduser -S -h $AFP_VOL_PATH -u 1102 -G $AFP_VOL_USERNAME $AFP_VOL_USERNAME
-echo $AFP_VOL_USERNAME:$AFP_VOL_PASSWORD | chpasswd
+addgroup -g 1102 $TIMEMACHINE_USER
+adduser -S -h $TIMEMACHINE_VOL_PATH -u 1102 -G $TIMEMACHINE_USER $TIMEMACHINE_USER
+echo $TIMEMACHINE_USER:$TIMEMACHINE_PASSWORD | chpasswd
 
 # Create mountpoint
-mkdir -p $AFP_VOL_PATH
-chown -R $AFP_VOL_USERNAME:$AFP_VOL_USERNAME $AFP_VOL_PATH
+mkdir -p $TIMEMACHINE_VOL_PATH
+chown -R $TIMEMACHINE_USER:$TIMEMACHINE_USER $TIMEMACHINE_VOL_PATH
 
