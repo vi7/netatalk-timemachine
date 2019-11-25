@@ -31,7 +31,6 @@ apk add netatalk=$NETATALK_VERSION
 rm -f /var/cache/apk/APKINDEX.*
 
 # Netatalk configuration
-# TODO: move to separate afp.conf
 cat << EOF > /etc/afp.conf
 [Global]
 mimic model = AirPort
