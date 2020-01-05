@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #
 # entrypoint.sh
 #
@@ -10,5 +10,5 @@ set -e
 rm -f /var/lock/netatalk
 
 # Netatalk start
-echo "Starting Netatalk daemon..."
-exec /usr/sbin/netatalk -d
+echo "Starting Netatalk daemon"
+exec /sbin/tini -- /usr/sbin/netatalk -d
