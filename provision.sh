@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #
 # provision.sh
 #
@@ -17,20 +17,18 @@ set -e
 
 AFP_VOL_USERNAME="tmbackup"
 AFP_VOL_PASSWORD="tmbackup"
-: ${AFP_VOL_PATH:="/timemachine"}
+: "${AFP_VOL_PATH:="/timemachine"}"
 # AFP vol size for the Time Machine backups. Default: 250GB
-: ${AFP_VOL_SIZE_LIMIT:=262144000}
+: "${AFP_VOL_SIZE_LIMIT:=262144000}"
 
 ########
 # MAIN #
 ########
 
-# Install Netatalk and cleanup apk cache
-apk update
-apk add netatalk=$NETATALK_VERSION
-rm -f /var/cache/apk/APKINDEX.*
+echo "Installing packages"
+apk add --no-cache tini netatalk="$NETATALK_VERSION"
 
-# Netatalk configuration
+echo "Configuring netatalk"
 cat << EOF > /etc/afp.conf
 [Global]
 mimic model = AirPort
@@ -49,12 +47,11 @@ time machine = yes
 vol size limit = $AFP_VOL_SIZE_LIMIT
 EOF
 
-# Add user
+echo "Adding users"
 addgroup -g 1102 $AFP_VOL_USERNAME
 adduser -S -h $AFP_VOL_PATH -u 1102 -G $AFP_VOL_USERNAME $AFP_VOL_USERNAME
 echo $AFP_VOL_USERNAME:$AFP_VOL_PASSWORD | chpasswd
 
-# Create mountpoint
+echo "Creating mount points"
 mkdir -p $AFP_VOL_PATH
 chown -R $AFP_VOL_USERNAME:$AFP_VOL_USERNAME $AFP_VOL_PATH
-
